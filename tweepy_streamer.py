@@ -115,32 +115,25 @@ if __name__ == '__main__':
 
     df = tweet_analyzer.tweets_to_data_frame(tweets)
 
-    # get average length over all tweets.
-    print(np.mean(df['len']))
-
-    # get the number of likes for the most liked tweet.
-    print(np.max(df['likes']))
-
-    # get the number of retweets for the most retweeted tweet.
-    print(np.max(df['retweets']))
-
     time_likes = pd.Series(data=df['likes'].values, index=df['date'])
     time_likes.plot(figsize=(16, 4), label='likes', legend=True)
 
     time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
     time_retweets.plot(figsize=(16, 4), label='retweets', legend=True)
 
+    # get average length over all tweets.
+    print('Average length: ', np.mean(df['len']))
+
+    # get the number of likes for the most liked tweet.
+    print('Most liked tweet has {} likes'.format(np.max(df['likes'])))
+
+    # get the number of retweets for the most retweeted tweet.
+    print('Most retweeted tweet has {} retweets'.format(np.max(df['retweets'])))
+    print(df.head(10))
     plt.show()
 
-
-    # print(df.head(5))
-    # hash_tag_list = ['liverpool fc', 'lfc', ]
     # fetched_tweets_filename = 'tweets.json'
+    # hash_tag_list = ['python', 'python3', 'django']
     #
-    # twitter_client = TwitterClient('LFC')
-    # # print(twitter_client.get_user_timeline_tweets(1))
-    # print(twitter_client.get_friend_list(2))
-    # # print(twitter_client.get_home_timeline_tweets(1))
-    #
-    # # twitter_streamer = TwitterStreamer()
-    # # twitter_streamer.stream_tweets(fetched_tweets_filename, hash_tag_list)
+    # twitter_streamer = TwitterStreamer()
+    # twitter_streamer.stream_tweets(fetched_tweets_filename, hash_tag_list)
